@@ -1,0 +1,495 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ECE308 - Spring 2015 - Pratik Sampat</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-04-30"><meta name="DC.source" content="Prob1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>ECE308 - Spring 2015 - Pratik Sampat</h1><pre class="codeinput"><span class="comment">%Example: MATLAB code</span>
+n = 0:40;
+omega = 0.1*2*pi;
+phase_offset = 0;
+A = 1.5;
+arg = omega*n - phase_offset;
+xn = A * cos(arg);
+stem(n,xn);
+axis([0 40 -2 2]);
+title(<span class="string">'x[n]=1.5*cos(0.2\pi)'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'x[n]'</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="Prob1_01.png" alt=""> <pre class="codeinput"><span class="comment">%{
+</span><span class="comment">1
+</span><span class="comment">    (a) What is the length of the signal x[n]? What is its period?
+</span><span class="comment">
+</span><span class="comment">        Length = 40
+</span><span class="comment">        Period = 10
+</span><span class="comment">
+</span><span class="comment">
+</span><span class="comment">    (b) Replace the stem command in the above code with the plot command
+</span><span class="comment">        and run the code again. How does this change the plot?
+</span><span class="comment">
+</span><span class="comment">        The stem command plots discrete sequences, while plot can be used
+</span><span class="comment">        for continuous signals.  This results in the smooth curves shown in
+</span><span class="comment">        the graph below.
+</span><span class="comment">
+</span><span class="comment">%}
+</span>
+n = 0:0.1:40;
+omega = 0.1*2*pi;
+phase_offset = 0;
+A = 1.5;
+arg = omega*n - phase_offset;
+xn = A * cos(arg);
+plot(n,xn);
+axis([0 40 -2 2]);
+title(<span class="string">'x[n]=1.5*cos(0.2\pi)'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'x[n]'</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="Prob1_02.png" alt=""> <pre class="codeinput"><span class="comment">%{
+</span><span class="comment">    (c) Modify the code so that it generates a sinusoid with length 50, frequency
+</span><span class="comment">        0.4 x 2*pi radians/sample, amplitude 3, and a phase offset of pi/2 radians.
+</span><span class="comment">%}
+</span>n = 0:0.1:50;
+omega = 0.4*2*pi;
+phase_offset = pi/2;
+A = 3;
+arg = omega*n - phase_offset;
+xn = A * cos(arg);
+plot(n,xn);
+axis([0 40 -4 4]);
+title(<span class="string">'x[n]=3*cos(0.8\pi - \pi/2)'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'x[n]'</span>);
+grid;
+</pre><img vspace="5" hspace="5" src="Prob1_03.png" alt=""> <pre class="codeinput"><span class="comment">%{
+</span><span class="comment">2 Use MATLAB to plot the following functions:
+</span><span class="comment">    (a) 2sin(3t - pi/2) - cos(2t)
+</span><span class="comment">    (b) (t+2)u(t+2) - 2tu(t) + (2(t-4) + 2)u(t-4)
+</span><span class="comment">%}
+</span>
+
+   <span class="comment">%Problem 2a</span>
+   t = 0:0.01:50;
+   x1 = 2*sin(3*t - (pi/2)) - cos(2*t);
+   figure(1)
+   plot(t,x1,<span class="string">'linewidth'</span>,2)
+   axis([0 50 -3 3]);
+   xlabel(<span class="string">'t'</span>)
+   ylabel(<span class="string">'x(t)'</span>)
+   title(<span class="string">'Problem 2a - 2sin(3t - \pi/2) - cos(2t)'</span>)
+   grid
+</pre><img vspace="5" hspace="5" src="Prob1_04.png" alt=""> <pre class="codeinput">    <span class="comment">%Problem 2b</span>
+    t = -5:0.01:5;
+    x2 = (t+2).*(t&gt;=-2) - 2.*t.*(t&gt;=0) + ((2.*(t-4) + 2).*(t&gt;=4));
+    figure(2)
+    plot(t,x2,<span class="string">'linewidth'</span>,2)
+    axis([-5 5 -2 2]);
+    xlabel(<span class="string">'t'</span>)
+    ylabel(<span class="string">'x(t)'</span>)
+    title(<span class="string">'Problem 2b - (t+2)u(t+2) - 2tu(t) + (2(t-4) + 2)u(t-4)'</span>)
+    grid
+</pre><img vspace="5" hspace="5" src="Prob1_05.png" alt=""> <pre class="codeinput"><span class="comment">%{
+</span><span class="comment">3 Use the MATLAB function conv to compute the convolutions in each of the
+</span><span class="comment">following cases over the range 0 &lt;= n &lt;= 20, and then plot the results
+</span><span class="comment">    (a) delta[n] + delta[n - 2], h[n] = 2*(3^n)*u[n]
+</span><span class="comment">    (b) (1/3)^n * u[n], h[n] = (1/2)^n-1 * u[n-1]
+</span><span class="comment">%}
+</span>
+   <span class="comment">%Problem 3a</span>
+   clear <span class="string">all</span>
+   n = [0:20];
+   x = [1 0 1];
+   h = 2*(3.^n);
+   y = conv(x,h);
+   t = [0:length(y)-1];
+
+
+   p = stem(t, y, <span class="string">'r'</span>, <span class="string">'filled'</span>);
+   set(p, <span class="string">'LineWidth'</span>,2,<span class="string">'MarkerSize'</span>,4);
+   title(<span class="string">'Problem 3a - y[n]= x[n] * h[n]'</span>);
+   xlabel(<span class="string">'n'</span>);
+   ylabel(<span class="string">'y[n]'</span>);
+</pre><img vspace="5" hspace="5" src="Prob1_06.png" alt=""> <pre class="codeinput">   <span class="comment">%Problem 3b</span>
+   clear <span class="string">all</span>
+   n = [0:20];
+   x = ((1/3).^n).*(n&gt;=0);
+   h = ((1/2).^(n-1)).*(n&gt;=1);
+   y = conv(x,h);
+   t = [0:length(y)-1];
+
+   p = stem(t, y, <span class="string">'r'</span>, <span class="string">'filled'</span>);
+   set(p, <span class="string">'LineWidth'</span>,2,<span class="string">'MarkerSize'</span>,4);
+   title(<span class="string">'Problem 3b - y[n]= x[n] * h[n]'</span>);
+   xlabel(<span class="string">'n'</span>);
+   ylabel(<span class="string">'y[n]'</span>);
+</pre><img vspace="5" hspace="5" src="Prob1_07.png" alt=""> <pre class="codeinput"><span class="comment">%Problem 4a</span>
+   clear <span class="string">all</span>
+   n = [0:6];
+   x = [3 7 1 9];
+   h = [4 -5 6 -3];
+   y = conv(x,h);
+
+   p = stem(n, y, <span class="string">'r'</span>, <span class="string">'filled'</span>);
+   set(p, <span class="string">'LineWidth'</span>,2,<span class="string">'MarkerSize'</span>,4);
+   title(<span class="string">'y[n]= x[n] * h[n]'</span>);
+   xlabel(<span class="string">'n'</span>);
+   ylabel(<span class="string">'y[n]'</span>);
+</pre><img vspace="5" hspace="5" src="Prob1_08.png" alt=""> <pre class="codeinput"><span class="comment">%Problem 4b</span>
+    H = fft(h,32);
+    w = [0:31];
+    subplot(2,1,1); p = stem(w/32, abs(H), <span class="string">'k'</span>);
+    set(p, <span class="string">'Linewidth'</span>,2);
+    title(<span class="string">'FFT Magnitude'</span>);
+    xlabel(<span class="string">'n'</span>);
+    ylabel(<span class="string">'Magnitude'</span>);
+    grid <span class="string">on</span>;
+    subplot(2,1,2); p = stem(w/32, angle(H), <span class="string">'k'</span>);set(p, <span class="string">'Linewidth'</span>,2);
+    title(<span class="string">'Angle'</span>);
+    xlabel(<span class="string">'n'</span>);
+    ylabel(<span class="string">'angle'</span>);
+    grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="Prob1_09.png" alt=""> <pre class="codeinput"><span class="comment">%Problem 4c - Plotting the time-domain sequence z[n] is the same as Problem</span>
+<span class="comment">%4a.</span>
+    X = fft(x,32);
+    Z = X.*H;
+    z = ifft(Z);
+    n1 = [0:31];
+
+   subplot(2,1,1); p = stem(n1, z, <span class="string">'r'</span>, <span class="string">'filled'</span>); axis([0 6 -100 100]);
+      title(<span class="string">'Problem 4c - Time Domain sequence z[n]'</span>);
+      xlabel(<span class="string">'n'</span>);
+      ylabel(<span class="string">'Magnitude'</span>);
+      grid <span class="string">on</span>;
+   subplot(2,1,2); p = stem(n, y, <span class="string">'r'</span>, <span class="string">'filled'</span>);
+      title(<span class="string">'Problem 4a - y[n]'</span>);
+      xlabel(<span class="string">'n'</span>);
+      ylabel(<span class="string">'Magnitude'</span>);
+      grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="Prob1_10.png" alt=""> <pre class="codeinput"><span class="comment">%Problem 5a</span>
+   clear <span class="string">all</span>
+   [x,fs,nbits] = wavread(<span class="string">'clap.wav'</span>);
+   <span class="comment">%sound(x,fs);</span>
+   X = fft(x);
+   w = [0:length(x)-1];
+
+   subplot(2,1,1); p = plot(w/15170, x,<span class="string">'k'</span>); set(p, <span class="string">'Linewidth'</span>,2);
+   title(<span class="string">'Time domain'</span>);
+    xlabel(<span class="string">'n'</span>);
+    ylabel(<span class="string">'x'</span>);
+    grid <span class="string">on</span>;
+   subplot(2,1,2); p = plot(w/15170, abs(X),<span class="string">'k'</span>); set(p, <span class="string">'Linewidth'</span>,2);
+    title(<span class="string">'Magnitude of X'</span>);
+    xlabel(<span class="string">'n'</span>);
+    ylabel(<span class="string">'x'</span>);
+    grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="Prob1_11.png" alt=""> <pre class="codeinput"><span class="comment">%Problem 5b</span>
+    clear <span class="string">all</span>
+    [x,fs,nbits] = wavread(<span class="string">'voice.wav'</span>);
+   <span class="comment">%sound(x,fs);</span>
+   X = fft(x);
+   w = [0:length(x)-1];
+
+   subplot(2,1,1); p = plot(w/length(x), x,<span class="string">'k'</span>); set(p, <span class="string">'Linewidth'</span>,2);
+   title(<span class="string">'Time domain'</span>);
+    xlabel(<span class="string">'n'</span>);
+    ylabel(<span class="string">'x'</span>);
+    grid <span class="string">on</span>;
+   subplot(2,1,2); p = plot(w/length(x), abs(X),<span class="string">'k'</span>); set(p, <span class="string">'Linewidth'</span>,2);
+    title(<span class="string">'Magnitude of X'</span>);
+    xlabel(<span class="string">'n'</span>);
+    ylabel(<span class="string">'x'</span>);
+    grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="Prob1_12.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% ECE308 - Spring 2015 - Pratik Sampat
+
+%Example: MATLAB code
+n = 0:40;
+omega = 0.1*2*pi;
+phase_offset = 0;
+A = 1.5;
+arg = omega*n - phase_offset;
+xn = A * cos(arg);
+stem(n,xn);
+axis([0 40 -2 2]);
+title('x[n]=1.5*cos(0.2\pi)');
+xlabel('n');
+ylabel('x[n]');
+grid;
+
+%%
+
+%{ 
+1 
+    (a) What is the length of the signal x[n]? What is its period?
+
+        Length = 40
+        Period = 10
+
+
+    (b) Replace the stem command in the above code with the plot command
+        and run the code again. How does this change the plot?
+
+        The stem command plots discrete sequences, while plot can be used
+        for continuous signals.  This results in the smooth curves shown in
+        the graph below.
+
+%}
+
+n = 0:0.1:40;
+omega = 0.1*2*pi;
+phase_offset = 0;
+A = 1.5;
+arg = omega*n - phase_offset;
+xn = A * cos(arg);
+plot(n,xn);
+axis([0 40 -2 2]);
+title('x[n]=1.5*cos(0.2\pi)');
+xlabel('n');
+ylabel('x[n]');
+grid;
+
+
+%%
+%{
+    (c) Modify the code so that it generates a sinusoid with length 50, frequency
+        0.4 x 2*pi radians/sample, amplitude 3, and a phase offset of pi/2 radians.
+%}
+n = 0:0.1:50;
+omega = 0.4*2*pi;
+phase_offset = pi/2;
+A = 3;
+arg = omega*n - phase_offset;
+xn = A * cos(arg);
+plot(n,xn);
+axis([0 40 -4 4]);
+title('x[n]=3*cos(0.8\pi - \pi/2)');
+xlabel('n');
+ylabel('x[n]');
+grid;
+
+%%
+%{
+2 Use MATLAB to plot the following functions:
+    (a) 2sin(3t - pi/2) - cos(2t)
+    (b) (t+2)u(t+2) - 2tu(t) + (2(t-4) + 2)u(t-4)
+%}
+
+ 
+   %Problem 2a
+   t = 0:0.01:50;
+   x1 = 2*sin(3*t - (pi/2)) - cos(2*t);
+   figure(1)
+   plot(t,x1,'linewidth',2)
+   axis([0 50 -3 3]);
+   xlabel('t')
+   ylabel('x(t)')
+   title('Problem 2a - 2sin(3t - \pi/2) - cos(2t)')
+   grid
+   
+%%
+    %Problem 2b
+    t = -5:0.01:5;
+    x2 = (t+2).*(t>=-2) - 2.*t.*(t>=0) + ((2.*(t-4) + 2).*(t>=4));
+    figure(2)
+    plot(t,x2,'linewidth',2)
+    axis([-5 5 -2 2]);
+    xlabel('t')
+    ylabel('x(t)')
+    title('Problem 2b - (t+2)u(t+2) - 2tu(t) + (2(t-4) + 2)u(t-4)')
+    grid
+   
+%%
+%{
+3 Use the MATLAB function conv to compute the convolutions in each of the
+following cases over the range 0 <= n <= 20, and then plot the results
+    (a) delta[n] + delta[n - 2], h[n] = 2*(3^n)*u[n]
+    (b) (1/3)^n * u[n], h[n] = (1/2)^n-1 * u[n-1]
+%}
+  
+   %Problem 3a
+   clear all
+   n = [0:20];
+   x = [1 0 1];
+   h = 2*(3.^n);
+   y = conv(x,h);
+   t = [0:length(y)-1];
+   
+  
+   p = stem(t, y, 'r', 'filled');
+   set(p, 'LineWidth',2,'MarkerSize',4);
+   title('Problem 3a - y[n]= x[n] * h[n]');
+   xlabel('n');
+   ylabel('y[n]');
+   
+%%
+   %Problem 3b
+   clear all
+   n = [0:20];
+   x = ((1/3).^n).*(n>=0);
+   h = ((1/2).^(n-1)).*(n>=1);
+   y = conv(x,h);
+   t = [0:length(y)-1];
+   
+   p = stem(t, y, 'r', 'filled');
+   set(p, 'LineWidth',2,'MarkerSize',4);
+   title('Problem 3b - y[n]= x[n] * h[n]');
+   xlabel('n');
+   ylabel('y[n]');
+   
+   
+
+%%
+%Problem 4a
+   clear all
+   n = [0:6];
+   x = [3 7 1 9];
+   h = [4 -5 6 -3];
+   y = conv(x,h);
+   
+   p = stem(n, y, 'r', 'filled');
+   set(p, 'LineWidth',2,'MarkerSize',4);
+   title('y[n]= x[n] * h[n]');
+   xlabel('n');
+   ylabel('y[n]');
+
+%%
+%Problem 4b
+    H = fft(h,32);
+    w = [0:31];
+    subplot(2,1,1); p = stem(w/32, abs(H), 'k'); 
+    set(p, 'Linewidth',2); 
+    title('FFT Magnitude');
+    xlabel('n');
+    ylabel('Magnitude');
+    grid on;
+    subplot(2,1,2); p = stem(w/32, angle(H), 'k');set(p, 'Linewidth',2);
+    title('Angle');
+    xlabel('n');
+    ylabel('angle');
+    grid on;
+    
+%%
+%Problem 4c - Plotting the time-domain sequence z[n] is the same as Problem
+%4a.
+    X = fft(x,32);
+    Z = X.*H;
+    z = ifft(Z);
+    n1 = [0:31];
+   
+   subplot(2,1,1); p = stem(n1, z, 'r', 'filled'); axis([0 6 -100 100]);
+      title('Problem 4c - Time Domain sequence z[n]');
+      xlabel('n');
+      ylabel('Magnitude');
+      grid on;
+   subplot(2,1,2); p = stem(n, y, 'r', 'filled');
+      title('Problem 4a - y[n]');
+      xlabel('n');
+      ylabel('Magnitude');
+      grid on;
+ 
+    
+    
+ %%
+%Problem 5a
+   clear all
+   [x,fs,nbits] = wavread('clap.wav');
+   %sound(x,fs);
+   X = fft(x);
+   w = [0:length(x)-1];
+   
+   subplot(2,1,1); p = plot(w/15170, x,'k'); set(p, 'Linewidth',2);
+   title('Time domain');
+    xlabel('n');
+    ylabel('x');
+    grid on;
+   subplot(2,1,2); p = plot(w/15170, abs(X),'k'); set(p, 'Linewidth',2);
+    title('Magnitude of X');
+    xlabel('n');
+    ylabel('x');
+    grid on;
+%%
+%Problem 5b
+    clear all
+    [x,fs,nbits] = wavread('voice.wav');
+   %sound(x,fs);
+   X = fft(x);
+   w = [0:length(x)-1];
+   
+   subplot(2,1,1); p = plot(w/length(x), x,'k'); set(p, 'Linewidth',2);
+   title('Time domain');
+    xlabel('n');
+    ylabel('x');
+    grid on;
+   subplot(2,1,2); p = plot(w/length(x), abs(X),'k'); set(p, 'Linewidth',2);
+    title('Magnitude of X');
+    xlabel('n');
+    ylabel('x');
+    grid on;
+   
+   
+   
+##### SOURCE END #####
+--></body></html>
